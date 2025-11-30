@@ -328,23 +328,28 @@
     </script>
 
     <!-- GA4 Event Tracking Script -->
-    <script>
-      document.querySelectorAll('[data-event]').forEach(function(btn) {
-        btn.addEventListener('click', function() {
-          let eventName = btn.getAttribute('data-event');
-          let eventData = {};
+   <script>
+  document.querySelectorAll('[data-event]').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      let eventName = btn.getAttribute('data-event');
 
-          if (btn.getAttribute('data-channel')) {
-            eventData.channel = btn.getAttribute('data-channel');
-          }
+      // SELALU kirim sebagai debug
+      let eventData = {
+        debug_mode: true
+      };
 
-          if (typeof gtag === "function") {
-            gtag('event', eventName, eventData);
-            console.log("EVENT TERKIRIM:", eventName, eventData);
-          }
-        });
-      });
-    </script>
+      if (btn.getAttribute('data-channel')) {
+        eventData.channel = btn.getAttribute('data-channel');
+      }
+
+      if (typeof gtag === "function") {
+        gtag('event', eventName, eventData);
+        console.log("EVENT TERKIRIM:", eventName, eventData);
+      }
+    });
+  });
+</script>
+
 
 </footer>
 
