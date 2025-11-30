@@ -386,6 +386,70 @@
   <button onclick="debug_purchase()">Purchase</button>
 </div>
 
+<script>
+  // SELECT_ITEM: saat user klik kartu menu
+  document.querySelectorAll('.menu-card').forEach(function(card) {
+    card.addEventListener('click', function() {
+      const name = card.querySelector('h3')?.innerText || 'Unknown item';
+      if (typeof gtag === "function") {
+        gtag('event', 'select_item', {
+          item_name: name
+        });
+        console.log('EVENT select_item TERKIRIM:', name);
+      }
+    });
+  });
+</script>
+
+<section class="section section-alt" id="simulasi">
+  <div class="container">
+    <h2 class="section-title">Simulasi Checkout (Untuk UAS)</h2>
+    <p class="section-subtitle">
+      Tombol ini hanya untuk keperluan simulasi event e-commerce di tugas Web Analitika.
+    </p>
+    <div class="steps-grid">
+      <button id="btn-begin-checkout" class="menu-btn">Begin Checkout</button>
+      <button id="btn-add-payment" class="menu-btn">Add Payment Info</button>
+      <button id="btn-purchase" class="menu-btn">Purchase</button>
+    </div>
+  </div>
+</section>
+
+<script>
+  // BEGIN_CHECKOUT
+  document.getElementById('btn-begin-checkout')?.addEventListener('click', function() {
+    if (typeof gtag === "function") {
+      gtag('event', 'begin_checkout', {
+        currency: 'IDR',
+        value: 40000
+      });
+      console.log('EVENT begin_checkout TERKIRIM');
+    }
+  });
+
+  // ADD_PAYMENT_INFO
+  document.getElementById('btn-add-payment')?.addEventListener('click', function() {
+    if (typeof gtag === "function") {
+      gtag('event', 'add_payment_info', {
+        payment_type: 'cash'
+      });
+      console.log('EVENT add_payment_info TERKIRIM');
+    }
+  });
+
+  // PURCHASE
+  document.getElementById('btn-purchase')?.addEventListener('click', function() {
+    if (typeof gtag === "function") {
+      gtag('event', 'purchase', {
+        transaction_id: 'UAS-' + Date.now(),
+        currency: 'IDR',
+        value: 40000
+      });
+      console.log('EVENT purchase TERKIRIM');
+    }
+  });
+</script>
+
 </footer>
 
 </body>
