@@ -15,18 +15,22 @@
     <meta property="og:image" content="Image (23).jpg">
     <meta property="og:locale" content="id_ID">
 
-    <!-- ✅ Google Analytics 4 -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-HSDLE31R1K"></script>
+    <!-- (Opsional) Google Tag Manager dummy -->
     <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-HSDLE31R1K');
+        (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-XXXXXXX');
     </script>
 
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<noscript>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXX"
+            height="0" width="0" style="display:none;visibility:hidden"></iframe>
+</noscript>
 
 <!-- HEADER -->
 <header class="site-header">
@@ -52,6 +56,7 @@
 </header>
 
 <main id="top">
+
     <!-- HERO -->
     <section class="hero">
         <div class="container hero-grid">
@@ -89,7 +94,6 @@
             </div>
 
             <div class="hero-image">
-                <!-- HERO pakai foto yang sama dengan galeri -->
                 <img src="Image (23).jpg" alt="Kopi susu karamel D’Brilly Coffee &amp; Tea">
             </div>
         </div>
@@ -125,6 +129,7 @@
             <p class="section-subtitle">Pilih racikan favoritmu – tinggal chat, kami siapkan.</p>
 
             <div class="menu-grid">
+
                 <!-- Kopi Sultan -->
                 <article class="menu-card" data-event="view_item">
                     <div class="menu-image" style="background-image: url('Image (24).jpg');"></div>
@@ -194,6 +199,7 @@
                         </a>
                     </div>
                 </article>
+
             </div>
         </div>
     </section>
@@ -269,7 +275,7 @@
                 <a class="social-card" href="https://wa.me/6285368106868"
                    target="_blank" data-event="click_external" data-channel="whatsapp">
                     <span class="social-label">WhatsApp Order</span>
-                    <span class="social-handle">0853-6810-6868</span>
+                    <span class="social-handle">0853-6810-6868</span> 
                     <span class="social-note">Klik untuk langsung chat &amp; order.</span>
                 </a>
                 <a class="social-card" href="#"
@@ -287,6 +293,7 @@
             </div>
         </div>
     </section>
+
 </main>
 
 <!-- FOOTER -->
@@ -310,6 +317,26 @@
     <script>
         document.getElementById('year').textContent = new Date().getFullYear();
     </script>
+
+    <!-- GA4 Event Tracking Script -->
+    <script>
+      document.querySelectorAll('[data-event]').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          let eventName = btn.getAttribute('data-event');
+          let eventData = {};
+
+          if (btn.getAttribute('data-channel')) {
+            eventData.channel = btn.getAttribute('data-channel');
+          }
+
+          if (typeof gtag === "function") {
+            gtag('event', eventName, eventData);
+            console.log("EVENT TERKIRIM:", eventName, eventData);
+          }
+        });
+      });
+    </script>
+
 </footer>
 
 </body>
