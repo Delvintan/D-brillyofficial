@@ -349,7 +349,42 @@
     });
   });
 </script>
+<!-- DUMMY E-COMMERCE EVENTS -->
+<script>
+  // Begin Checkout simulation
+  function debug_begin_checkout() {
+    gtag('event', 'begin_checkout', {
+      currency: 'IDR',
+      value: 45000
+    });
+    console.log("EVENT begin_checkout TERKIRIM");
+  }
 
+  // Add Payment Info simulation
+  function debug_add_payment() {
+    gtag('event', 'add_payment_info', {
+      payment_type: 'QRIS'
+    });
+    console.log("EVENT add_payment_info TERKIRIM");
+  }
+
+  // Purchase simulation
+  function debug_purchase() {
+    gtag('event', 'purchase', {
+      transaction_id: 'DBG-' + Date.now(),
+      value: 45000,
+      currency: 'IDR'
+    });
+    console.log("EVENT purchase TERKIRIM");
+  }
+</script>
+
+<div style="padding:20px; background:#eee; margin-top:20px;">
+  <h3>Debug E-Commerce Events</h3>
+  <button onclick="debug_begin_checkout()">Begin Checkout</button>
+  <button onclick="debug_add_payment()">Add Payment Info</button>
+  <button onclick="debug_purchase()">Purchase</button>
+</div>
 
 </footer>
 
